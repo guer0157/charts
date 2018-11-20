@@ -1,3 +1,5 @@
+let chart={
+    init: function(ev){
 let ctx = document.getElementById('myChart');
 let data=[20, 30, 40, 50, 80, 90, 100];
 Array.min = function(data){
@@ -38,3 +40,4 @@ let chart = new Chart(ctx, {
         }
     }
 });
+}}
