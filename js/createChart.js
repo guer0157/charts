@@ -1,14 +1,21 @@
 let chart={
     init: function(ev){
 let ctx = document.getElementById('myChart');
-let data=[20, 30, 40, 50, 80, 90, 100];
-Array.min = function(data){
-    return Math.min.apply(Math, data);
-};
-let minimum=(Array.min(data)-10);
-console.log(minimum)
-let labels=["January", "February", "March", "April", "May", "June", "July"]
+        console.log(ev);
+let data=[]
+//Array.min = function(data){
+//    return Math.min.apply(Math, data);
+//};
+//let minimum=(Array.min(data)-10);
+//console.log(minimum)
+let labels=[]
+ev.forEach(user=>{
+    data.push(user.number_of_bottles)
+    labels.push(user.restaurant_name)
+})
 let backgroundColor=['rgb(255, 99, 132)','rgb(100, 100, 100)','rgb(255, 255, 0)','rgb(0, 0, 0)','rgb(50, 50, 50)','rgb(100, 50, 225)','rgb(0, 100, 200)']
+console.log(data)
+        
 let chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'bar',
@@ -30,13 +37,6 @@ let chart = new Chart(ctx, {
             display:true,
             text:"Chart of bottles",
             fontColor:"#000"
-        },
-        scales:{
-            yAxes:[{
-                ticks:{
-                    min:minimum
-                }
-            }]
         }
     }
 });

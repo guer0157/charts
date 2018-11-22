@@ -1,6 +1,5 @@
 let bottleWorks={
     baseurl:"https://allengoo.com/php/bottleworksform.php",
-    bottles:null,
     init: function(){
     let options={
         method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -15,12 +14,8 @@ let bottleWorks={
         .catch(err=>{console.log(err)})
     },
     runChart: function(data){
-        console.log(data);
-        bottleWorks.bottles=[]
-        data.forEach(user=>{
-            bottleWorks.bottles.push(user.number_of_bottles)
-        })
-         console.log(bottleWorks.bottles);
+        
+        chart.init(data)
     }
 }
 document.addEventListener("DOMContentLoaded", bottleWorks.init)
