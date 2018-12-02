@@ -1,3 +1,10 @@
+let img=document.getElementById("img")
+img.src=""
+
+
+
+
+
 let chart={
     init: function(ev){
 let ctx = document.getElementById('myChart');
