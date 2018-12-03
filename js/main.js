@@ -1,5 +1,5 @@
 let bottleWorks={
-    baseurl:"https://allengoo.com/php/bottleworksform.php",
+    baseurl:"https://allengoo.com/php/bottleworks2.php",
     init: function(){
     let options={
         method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -14,9 +14,9 @@ let bottleWorks={
         .catch(err=>{console.log(err)})
     },
     runChart: function(data){
-        
+        console.log(data)
         chart.init(data)
     }
 }
-document.addEventListener("DOMContentLoaded", bottleWorks.init)
+//document.addEventListener("DOMContentLoaded", bottleWorks.init)
 
