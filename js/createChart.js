@@ -1,33 +1,41 @@
 let chart={
     init: function(ev){
-        
-        
-let img = new Image();
-
-img.src = '../img/newvf.png';
-let ctx, fillPattern;
-img.onload = function() {
-    ctx = document.getElementById('myChart').getContext('2d');
-    fillPattern = ctx.createPattern(img, 'repeat');
-        
+        console.log(ev)
 
 let data=[]
-//Array.min = function(data){
-//    return Math.min.apply(Math, data);
-//};
-//let minimum=(Array.min(data)-10);
-//console.log(minimum)
+let totalData=[10]
+let ctx=document.getElementById("myChart").getContext('2d');
 let labels=[]
-//ev.forEach(user=>{
-//    data.push(user.number_of_bottles)
-//    labels.push(user.restaurant_name)
-//})
-        labels=["Tosca","Mill Street"]
-        data=[12,20]
-let borderColor=['rgba(186, 196, 89)','rgba(0, 0, 0)','rgba(255, 255, 0)','rgba(0, 0, 0)','rgba(50, 50, 50)','rgba(100, 50, 225)','rgba(0, 100, 200)']
-let backgroundColor=['rgba(186, 196, 89, .5)','rgba(0, 0, 0,.5)','rgba(255, 255, 0,.5)','rgba(0, 0, 0,.5)','rgba(50, 50, 50,.5)','rgba(100, 50, 225,.5)','rgba(0, 100, 200,.5)']
-console.log(data)
-   
+ev.forEach(user=>{
+    data.push(parseInt(user.number_of_bottles))
+})
+        
+let getSum=(total, num)=>{
+    console.log(total,num)
+    return total + num
+}
+
+let randomRestaurant=ev[Math.floor(Math.random()*ev.length)];
+console.log('console',randomRestaurant);
+        labels.push(randomRestaurant.restaurant_name, 'Average per year')
+        
+let dataSum=data.reduce(getSum)/10;
+//        let d=data.reduce(getSum);
+        
+//        let chartSet=[randomRestaurant.number_of_bottles, dataSum]
+                       
+        let chartSet=[randomRestaurant.number_of_bottles, dataSum]
+//let borderColor=['rgb(175, 189, 56)','rgb(236, 239, 210)']
+let backgroundColor=['rgb(175, 189, 56)','rgb(236, 239, 210)']
+
+let dataset=[{
+    label:"Bottles Collected",
+    backgroundColor:'rgba(255, 255, 0,.5)',
+    borderWidth:1,
+    data:data[0],
+    
+}]   
+
 
 let chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -37,10 +45,10 @@ let chart = new Chart(ctx, {
         labels: labels,
         datasets: [{
             label: "Bottles Collected",
-            backgroundColor: fillPattern,
+            backgroundColor: backgroundColor,
             borderWidth: 3,
-            borderColor: borderColor,
-            data: data
+//            borderColor: borderColor,
+            data: chartSet
         }]
     },
 
@@ -62,12 +70,15 @@ let chart = new Chart(ctx, {
                 }
             }],
             yAxes: [{
+                stacked:true,
                 gridLines:{
                     color:"rgba(0,0,0,0)",
-                }
+                },
+                barPercentage: 0.5,
+                categoryPercentage: .5,
     }]
         }
     }
 });
-}}}
-document.addEventListener("DOMContentLoaded", chart.init)
+}}
+
